@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Your Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1>Your Shopping Cart</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Unit Price</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>
+                    <a href="{{ item.product.get_absolute_url }}">
+                        <img src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}" 
+                             width="50" alt="{{ item.product.name }}">
+                    </a>
+                </td>
+                <td>{{ item.product.name }}</td>
+                <td>
+                    <form action="{% url 'cart:remove_cart' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="10" class="form-control w-50 d-inline">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Update</button>
+                    </form>
+                </td>
+                <td><a href="{% url 'cart:full_remove' item.product.id %}" class="btn btn-sm btn-danger">Remove</a></td>
+                <td>₦{{ item.product.price }}</td>
+                <td>₦{{ item.sub_total }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">Your cart is empty.</td>
+            </tr>
+            {% endfor %}
+            {% if cart_items %}
+            <tr>
+                <td colspan="5" class="text-end"><strong>Total:</strong></td>
+                <td><strong>₦{{ total }}</strong></td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <div class="text-end">
+        <a href="{% url 'products:product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+        <a href="#" class="btn btn-primary">Checkout</a>
+    </div>
+</div>
+{% endblock %}
