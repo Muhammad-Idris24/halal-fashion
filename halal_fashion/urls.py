@@ -20,11 +20,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('django-admin/', admin.site.urls),
+    path('custom-admin/', include('admin.urls', namespace='custom_admin')),
+    
+    path('', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('allauth.urls')),
+    
     path('', include('products.urls', namespace='products')),
     path('cart/', include('cart.urls', namespace='cart')),
-    path('', include('accounts.urls', namespace='accounts')),
+    path('orders/', include('orders.urls', namespace='orders')),
+    path('wishlist/', include('wishlist.urls', namespace='wishlist')),
 ]
 
 if settings.DEBUG:

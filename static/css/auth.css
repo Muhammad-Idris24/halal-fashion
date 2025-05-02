@@ -1,0 +1,91 @@
+/* Auth System Styles */
+.auth-card {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.auth-card .card-body {
+    padding: 2.5rem;
+}
+
+.auth-card .input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+.auth-card .form-control {
+    border-left: none;
+    padding-left: 0;
+}
+
+.auth-card .form-control:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+.auth-card .btn-dark {
+    background-color: #212529;
+    border: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.auth-card .btn-dark:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+}
+
+.auth-card .toggle-password {
+    border-left: none;
+    cursor: pointer;
+}
+
+.auth-card .toggle-password:hover {
+    background-color: #f1f1f1;
+}
+
+.auth-card .invalid-feedback {
+    font-size: 0.85rem;
+}
+
+.auth-card .password-strength {
+    margin-top: 0.5rem;
+}
+
+.auth-card .progress {
+    background-color: #f1f1f1;
+}
+
+.auth-card .progress-bar {
+    transition: width 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 575.98px) {
+    .auth-card .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Animation for form elements */
+.auth-card .form-control,
+.auth-card .btn,
+.auth-card .input-group-text {
+    transition: all 0.3s ease;
+}
+
+.auth-card .form-control:focus {
+    border-color: #212529;
+}
+
+/* Terms checkbox styling */
+.auth-card .form-check-input:checked {
+    background-color: #212529;
+    border-color: #212529;
+}
+
+.auth-card .form-check-label a {
+    color: #212529;
+    text-decoration: underline;
+}

@@ -1,0 +1,60 @@
+/* Main Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.card {
+    transition: transform 0.3s ease;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+.btn-primary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40 !important;
+}
+
+footer a:hover {
+    color: #adb5bd !important;
+}
+
+/* Product Detail Page */
+.img-fluid {
+    max-height: 500px;
+    width: auto;
+}
+
+/* Cart Page */
+.table {
+    background-color: white;
+}

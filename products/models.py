@@ -1,9 +1,12 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import Index
 
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
+    description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='categories/', blank=True)
     
     class Meta:
         ordering = ('name',)
@@ -36,7 +39,9 @@ class Product(models.Model):
     
     class Meta:
         ordering = ('name',)
-        index_together = (('id', 'slug'),)
+        indexes = [
+            Index(fields=['slug', 'id']),
+    ]
     
     def __str__(self):
         return self.name

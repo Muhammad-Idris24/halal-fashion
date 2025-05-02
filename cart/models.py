@@ -1,5 +1,8 @@
 from django.db import models
 from products.models import Product
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Cart(models.Model):
     cart_id = models.CharField(max_length=250, blank=True)
@@ -18,6 +21,7 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
     active = models.BooleanField(default=True)
     
+    
     class Meta:
         db_table = 'CartItem'
     
@@ -26,3 +30,4 @@ class CartItem(models.Model):
     
     def __str__(self):
         return self.product.name
+    

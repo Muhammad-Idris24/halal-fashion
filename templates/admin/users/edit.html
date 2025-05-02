@@ -1,0 +1,47 @@
+{% extends "admin/base.html" %}
+
+{% block admin_content %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Edit User</h2>
+        <a href="{% url 'admin:users' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-2"></i>Back to Users
+        </a>
+    </div>
+
+    <div class="card-admin">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">First Name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            {{ form.last_name }}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-switch mb-3">
+                            {{ form.is_active }}
+                            <label class="form-check-label">Active</label>
+                        </div>
+                        <div class="form-check form-switch mb-3">
+                            {{ form.is_staff }}
+                            <label class="form-check-label">Staff Member</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Update User</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

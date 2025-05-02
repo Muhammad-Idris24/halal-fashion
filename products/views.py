@@ -1,5 +1,27 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product
+from .forms import  ContactForm
+
+def home(request):
+    featured_products = Product.objects.filter(available=True)[:8]
+    categories = Category.objects.all()[:6]
+    return render(request, 'products/home.html', {
+        'featured_products': featured_products,
+        'categories': categories,
+    })
+
+def about(request):
+    return render(request, 'products/about.html')
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Process form data
+            return redirect('products:contact_success')
+    else:
+        form = ContactForm()
+    return render(request, 'products/contact.html', {'form': form})
 
 def product_list(request, category_slug=None):
     category = None

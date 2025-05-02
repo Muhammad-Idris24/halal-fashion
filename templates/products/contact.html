@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="contact-page">
+    <!-- Contact Hero -->
+    <section class="contact-hero py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold">Get In Touch</h1>
+                    <p class="lead">We'd love to hear from you! Reach out with questions, feedback, or wholesale inquiries.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{% static 'images/contact-hero.jpg' %}" alt="Contact Halal Fashion" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-form py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4 p-md-5">
+                            <h2 class="text-center fw-bold mb-4">Send Us a Message</h2>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        {{ form.name|as_crispy_field }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{ form.email|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.subject|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.message|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-info py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5">Other Ways to Reach Us</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-primary bg-opacity-10 text-primary rounded-circle mx-auto mb-4" style="width: 80px; height: 80px; line-height: 80px;">
+                                <i class="bi bi-geo-alt-fill fs-3"></i>
+                            </div>
+                            <h3 class="h5">Our Location</h3>
+                            <p>123 Galaxy Mall<br>Kaduna, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-success bg-opacity-10 text-success rounded-circle mx-auto mb-4" style="width: 80px; height: 80px; line-height: 80px;">
+                                <i class="bi bi-telephone-fill fs-3"></i>
+                            </div>
+                            <h3 class="h5">Call Us</h3>
+                            <p>+234 816 097 1068<br>Mon-Fri, 9am-5pm WAT</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box bg-info bg-opacity-10 text-info rounded-circle mx-auto mb-4" style="width: 80px; height: 80px; line-height: 80px;">
+                                <i class="bi bi-envelope-fill fs-3"></i>
+                            </div>
+                            <h3 class="h5">Email Us</h3>
+                            <p>info@halalfashion.com<br>support@halalfashion.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container-fluid p-0">
+            <div class="ratio ratio-21x9">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.371425926231!2d8.516578315757812!3d12.00259129144787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDAwJzA5LjMiTiA4wrAzMScwOC4xIkU!5e0!3m2!1sen!2sng!4v1620000000000!5m2!1sen!2sng" 
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

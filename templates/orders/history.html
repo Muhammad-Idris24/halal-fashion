@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Order History | Halal Fashion{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h4 class="mb-0">Order History</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-muted">Your order history will appear here.</p>
+            <a href="{% url 'accounts:profile' %}" class="btn btn-dark">
+                <i class="fas fa-arrow-left me-1"></i> Back to Profile
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

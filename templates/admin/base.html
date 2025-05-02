@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Admin Panel | Halal Fashion{% endblock %}
+
+{% block styles %}
+<style>
+    :root {
+        --sidebar-width: 280px;
+        --topbar-height: 60px;
+    }
+    
+    .admin-sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: #343a40;
+        color: white;
+        transition: all 0.3s;
+        z-index: 1000;
+    }
+    
+    .admin-main {
+        margin-left: var(--sidebar-width);
+        padding: 20px;
+        min-height: calc(100vh - var(--topbar-height));
+    }
+    
+    .admin-topbar {
+        height: var(--topbar-height);
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: var(--sidebar-width);
+        z-index: 999;
+    }
+    
+    .sidebar-link {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 12px 20px;
+        display: block;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .sidebar-link:hover, .sidebar-link.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-link i {
+        width: 24px;
+        text-align: center;
+        margin-right: 10px;
+    }
+    
+    .card-admin {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+    }
+    
+    .table-admin {
+        background: white;
+    }
+    
+    .table-admin th {
+        border-top: none;
+        font-weight: 600;
+        color: #495057;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="admin-sidebar">
+    <div class="text-center py-4">
+        <img src="{% static 'images/logo.png' %}" alt="Halal Fashion" height="120">
+    </div>
+    
+    <nav class="mt-4">
+        <a href="{% url 'admin:dashboard' %}" class="sidebar-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+        <a href="{% url 'admin:products' %}" class="sidebar-link {% if 'product' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-tshirt"></i> Products
+        </a>
+        <a href="{% url 'admin:categories' %}" class="sidebar-link {% if 'category' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-tags"></i> Categories
+        </a>
+        <a href="{% url 'admin:users' %}" class="sidebar-link {% if 'user' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-users"></i> Users
+        </a>
+        <a href="{% url 'account_logout' %}" class="sidebar-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+    </nav>
+</div>
+
+<div class="admin-topbar d-flex align-items-center justify-content-end px-4">
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+            <i class="fas fa-user-circle me-2"></i> {{ request.user.email }}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">My Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+<main class="admin-main">
+    {% block admin_content %}
+    {% endblock %}
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Toggle sidebar on mobile
+function toggleSidebar() {
+    const sidebar = document.querySelector('.admin-sidebar');
+    sidebar.classList.toggle('collapsed');
+}
+
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
+{% endblock %}

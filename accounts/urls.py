@@ -1,10 +1,13 @@
 from django.urls import path
-from .views import signup_view, profile_view
+from .views import signup_view, profile_view, profile_update_view
 from django.contrib.auth import views as auth_views
+
+app_name = 'accounts'
 
 urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('profile/', profile_view, name='profile'),
+    path('profile/update/', profile_update_view, name='profile_update'),
     # Password reset views (using Django's built-in)
     path('password_reset/', auth_views.PasswordResetView.as_view(
         template_name='account/password_reset.html',

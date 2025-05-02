@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: halal-fashion
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn halal_fashion.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: halal-fashion-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
